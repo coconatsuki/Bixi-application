@@ -4,7 +4,11 @@
       <h1 class="text-center p-4 border-bottom">Stations with available bixis near the office</h1>
     </div>
     <div class="col-md-4 offset-md-4 d-flex justify-content-center">
-      <button type="button" class="btn btn-primary btn-lg m-4" action="/action_page.php" method="post">Check nearby stations</button>
+
+      <%= form_tag("/stations", method: "post") do %>
+        <%= submit_tag("Refresh stations", class: "btn btn-primary btn-lg m-4") %>
+      <% end %>
+
     </div>
     <div class="col-md-10  offset-md-1">
 
