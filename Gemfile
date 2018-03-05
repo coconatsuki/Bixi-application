@@ -18,15 +18,14 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
-# For debugging
-gem "better_errors"
-gem "binding_of_caller"
 # To calculate the distance between 2 stations
 gem 'geocoder'
 # Bootstrap for the front-end
 gem 'bootstrap', '~> 4.0.0'
 # jQuery, needed for Bootstrap
 gem 'jquery-rails'
+# simple HTTP and REST client for Ruby,
+gem 'rest-client'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -49,6 +48,12 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   # Builds objects used in RSpec tests. It replaces tests fixtures
   gem 'factory_bot_rails'
+  # Mocking http calls, except the first time
+  gem 'vcr'
+  gem 'webmock'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'faker'
 end
 
 group :development do
@@ -58,8 +63,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'pry-byebug'
-  gem 'pry-rails'
+  # For debugging
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

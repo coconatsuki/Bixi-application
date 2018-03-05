@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302160101) do
+ActiveRecord::Schema.define(version: 20180304192338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "request_dates", force: :cascade do |t|
+    t.string "request_name"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "stations", force: :cascade do |t|
     t.string "name"
@@ -21,9 +28,10 @@ ActiveRecord::Schema.define(version: 20180302160101) do
     t.float "longitude"
     t.float "distance_from_office"
     t.string "address"
-    t.string "post_code"
+    t.string "bixi_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "available_bixis"
   end
 
 end

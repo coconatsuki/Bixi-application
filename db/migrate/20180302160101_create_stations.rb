@@ -6,7 +6,7 @@ class CreateStations < ActiveRecord::Migration[5.1]
       t.float :longitude
       t.float :distance_from_office
       t.string :address
-      t.string :post_code
+      t.string :bixi_id
 
       t.timestamps
     end
