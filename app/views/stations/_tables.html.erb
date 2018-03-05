@@ -1,0 +1,44 @@
+<% if !stations_with_bixis.empty? %>
+
+<table class="table table-bordered m-2">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Address</th>
+      <th scope="col">Distance from office</th>
+      <th scope="col">Number of available bixis</th>
+    </tr>
+  </thead>
+  <tbody id="bixis-table">
+    <% stations_with_bixis.each_with_index do |station, index| %>
+    <tr>
+      <th scope="row"><%= index %></th>
+      <%= render station %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% else %>
+
+<h4 class="m-5 message">Sorry, there's no available bixis nearby. Here is a list of the closest stations:</h4>
+<table class="table table-bordered m-2">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Address</th>
+      <th scope="col">Distance from office</th>
+      <th scope="col">Number of available bixis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% closest_stations.each_with_index do |station, index| %>
+    <tr>
+      <th scope="row"><%= index %></th>
+      <%= render station %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>

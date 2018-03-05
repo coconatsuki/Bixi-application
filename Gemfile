@@ -26,6 +26,8 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 # simple HTTP and REST client for Ruby,
 gem 'rest-client'
+# Check Ruby on Rails good practices and suggest improvements
+gem 'rubocop'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

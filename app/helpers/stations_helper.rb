@@ -19,6 +19,8 @@ module StationsHelper
     RequestDate.find_or_create_by(request_name: request).update(date: Time.now)
   end
 
+  # Check each request date
+
   def stations_need_create_or_update?
     request = RequestDate.find_by(request_name: "request_stations")
     !request || request.date < 1.day.ago
@@ -26,8 +28,18 @@ module StationsHelper
 
   def bixis_need_update?
     request = RequestDate.find_by(request_name: "request_bikes")
-    !request || request.date < 1.minute.ago
+    !request || request.date < 2.minute.ago
   end
+
+  # Set the variables for the Station controller
+
+  def set_stations_variables
+    @stations_with_bixis = Station.where("available_bixis > 0").order(:distance_from_office).limit(5)
+    if @stations_with_bixis.empty?
+        @closest_stations = Station.order(:distance_from_office).limit(5)
+    end
+  end
+
 
 # Creates & updates stations in the Database, and destroy useless ones
 

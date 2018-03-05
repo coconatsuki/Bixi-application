@@ -5,59 +5,14 @@
     </div>
     <div class="col-md-4 offset-md-4 d-flex justify-content-center">
 
-      <%= form_tag("/stations", method: "post") do %>
+      <%= form_tag("/stations", method: "post", remote: true) do %>
         <%= submit_tag("Refresh stations", class: "btn btn-primary btn-lg m-4") %>
       <% end %>
 
     </div>
-    <div class="col-md-10  offset-md-1">
+    <div class="col-md-10  offset-md-1" id="tables">
 
-      <% unless @stations_with_bixis.empty? %>
-
-      <table class="table table-bordered m-2">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Address</th>
-            <th scope="col">Distance from office</th>
-            <th scope="col">Number of available bixis</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @stations_with_bixis.each_with_index do |station, index| %>
-          <tr>
-            <th scope="row"><%= index %></th>
-            <%= render station %>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <% end %>
-
-      <% if @closest_stations %>
-
-      <h4 class="m-4"><%= @message %></h4>
-      <table class="table table-bordered m-2">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Address</th>
-            <th scope="col">Distance from office</th>
-            <th scope="col">Number of available bixis</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @closest_stations.each_with_index do |station, index| %>
-          <tr>
-            <th scope="row"><%= index %></th>
-            <%= render station %>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <% end %>
+      <%= render partial: 'tables', locals: {stations_with_bixis: @stations_with_bixis, closest_stations: @closest_stations} %>
 
     </div>
   </div>
