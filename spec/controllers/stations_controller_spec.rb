@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe StationsController, type: :controller do
+RSpec.describe StationsController, :vcr, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
