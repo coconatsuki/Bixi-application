@@ -28,6 +28,10 @@ gem 'jquery-rails'
 gem 'rest-client'
 # Check Ruby on Rails good practices and suggest improvements
 gem 'rubocop'
+# Job runner sidekiq, tu update bixis stations at regular intervals
+gem 'sidekiq'
+# Extension to Sidekiq that pushes jobs in a scheduled way
+gem 'sidekiq-scheduler'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
