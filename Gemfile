@@ -32,6 +32,8 @@ gem 'rubocop'
 gem 'sidekiq'
 # Extension to Sidekiq that pushes jobs in a scheduled way
 gem 'sidekiq-scheduler'
+# allows to perform atomic operations on individual data structures
+gem 'redis-objects'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

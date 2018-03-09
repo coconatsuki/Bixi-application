@@ -3,6 +3,11 @@ class UpdateBixisAvailabilityJob < ApplicationJob
   include StationsHelper
 
   def perform
-    update_available_bikes
+    create_stations if Station.count == 0;
+    if bixis_need_update?
+      update_available_bikes
+    else
+      Rails.logger.info("Stations already up to date")
+    end
   end
 end

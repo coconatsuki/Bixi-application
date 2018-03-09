@@ -3,6 +3,10 @@ class UpdateStationsJob < ApplicationJob
   include StationsHelper
 
   def perform
-    create_stations
+    if stations_need_create_or_update?
+      create_stations
+    else
+      Rails.logger.info("Stations already up to date")
+    end
   end
 end
