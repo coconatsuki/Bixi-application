@@ -35,7 +35,7 @@ gem 'sidekiq-scheduler'
 # allows to perform atomic operations on individual data structures
 gem 'redis-objects'
 
-gem 'rake-timeout' 
+gem 'rack-timeout' 
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
