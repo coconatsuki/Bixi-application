@@ -1,5 +1,7 @@
 module StationsHelper
-  require 'rest-client'
+
+  STATIONS_REQUEST_DATE = Redis::Value.new("stations_helper:stations_request_date", marshal: true)
+  BIXIS_REQUEST_DATE = Redis::Value.new("stations_helper:bixis_request_date", marshal: true)
 
   # Fetch the datas from the API
 
@@ -13,22 +15,16 @@ module StationsHelper
     JSON.parse(bikes.body)['data']['stations']
   end
 
-  # Update the date of each API request in the RequestDate database.
-
-  def create_and_update_request_time(request)
-    RequestDate.find_or_create_by(request_name: request).update(date: Time.now)
-  end
-
   # Check each request date
 
   def stations_need_create_or_update?
-    request = RequestDate.find_by(request_name: 'request_stations')
-    !request || request.date < 1.day.ago
+    request = STATIONS_REQUEST_DATE.value
+    !request || request < 1.day.ago
   end
 
   def bixis_need_update?
-    request = RequestDate.find_by(request_name: 'request_bikes')
-    !request || request.date < 2.minute.ago
+    request = BIXIS_REQUEST_DATE.value
+    !request || request < 2.minute.ago
   end
 
   # Creates & updates stations in the Database, and destroy useless ones
@@ -47,7 +43,7 @@ module StationsHelper
         new_station.save
       end
     end
-    create_and_update_request_time('request_stations')
+    STATIONS_REQUEST_DATE.value = Time.now
     destroy_useless_stations(stations_array)
   end
 
@@ -63,6 +59,6 @@ module StationsHelper
     api_stations.each do |station|
       Station.where(bixi_id: station['station_id']).update_all(available_bixis: station['num_bikes_available'])
     end
-    create_and_update_request_time('request_bikes')
+    BIXIS_REQUEST_DATE.value = Time.now
   end
 end

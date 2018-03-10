@@ -35,6 +35,8 @@ gem 'sidekiq-scheduler'
 # allows to perform atomic operations on individual data structures
 gem 'redis-objects'
 
+gem 'rake-timeout' 
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -62,6 +64,11 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'faker'
+end
+
+group :test do
+  gem 'simplecov'
+  gem 'shoulda-matchers'
 end
 
 group :development do

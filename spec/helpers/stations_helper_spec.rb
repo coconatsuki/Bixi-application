@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe StationsHelper, vcr: { :record => :new_episodes }, type: :helper do
+  after(:each) do
+    StationsHelper::STATIONS_REQUEST_DATE.delete
+    StationsHelper::BIXIS_REQUEST_DATE.delete
+  end
 
   describe '#request_stations' do
     it 'returns an array of hashes' do
@@ -20,23 +24,16 @@ RSpec.describe StationsHelper, vcr: { :record => :new_episodes }, type: :helper 
     end
   end
 
-  describe '#create_and_update_request_time' do
-    it 'create or update the request time' do
-      requestDate = create(:request_2_days_old_date)
-      expect {create_and_update_request_time("request_stations") }.to change { requestDate.reload.date }
-    end
-  end
-
   describe '#stations_need_create_or_update?' do
     it 'returns true if no api request has been made yet' do
       expect(stations_need_create_or_update?).to be_truthy
     end
     it 'returns true if the request is more than 1 day old' do
-      create(:request_2_days_old_date)
+      StationsHelper::STATIONS_REQUEST_DATE.value = 2.days.ago
       expect(stations_need_create_or_update?).to be_truthy
     end
     it 'returns false if the request is less than 1 day old' do
-      create(:request_2_hours_old_date)
+      StationsHelper::STATIONS_REQUEST_DATE.value = 2.hours.ago
       expect(stations_need_create_or_update?).to be_falsy
     end
   end
@@ -46,11 +43,11 @@ RSpec.describe StationsHelper, vcr: { :record => :new_episodes }, type: :helper 
       expect(stations_need_create_or_update?).to be_truthy
     end
     it 'returns true if the request is more than 2 minutes old' do
-      create(:request_5_minutes_old_date)
+      StationsHelper::BIXIS_REQUEST_DATE.value = 5.minutes.ago
       expect(bixis_need_update?).to be_truthy
     end
     it 'returns false if the request is less than 1 minute old' do
-      create(:request_1_minute_old_date)
+      StationsHelper::BIXIS_REQUEST_DATE.value = 30.seconds.ago
       expect(bixis_need_update?).to be_falsy
     end
   end
@@ -81,9 +78,7 @@ RSpec.describe StationsHelper, vcr: { :record => :new_episodes }, type: :helper 
       expect( Station.find_by("bixi_id" => "abcd")).to be_nil
     end
     it 'updates the api request date (for stations)' do
-    expect(RequestDate.find_by(request_name: "request_stations")).to be_nil
-    subject
-    expect(RequestDate.find_by(request_name: "request_stations").date).to be_truthy
+      expect { subject }.to change { StationsHelper::STATIONS_REQUEST_DATE.value }.from(nil)
     end
   end
 
@@ -97,9 +92,7 @@ RSpec.describe StationsHelper, vcr: { :record => :new_episodes }, type: :helper 
       expect(Station.first.available_bixis).to be_truthy
     end
     it 'update the api request date (for bikes)' do
-      expect(RequestDate.find_by(request_name: "request_bikes")).to be_nil
-      subject
-      expect(RequestDate.find_by(request_name: "request_bikes").date).to be_truthy
+      expect { subject }.to change { StationsHelper::BIXIS_REQUEST_DATE.value }.from(nil)
     end
   end
 end
