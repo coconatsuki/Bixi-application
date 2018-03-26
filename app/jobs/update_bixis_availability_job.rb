@@ -3,7 +3,7 @@ class UpdateBixisAvailabilityJob < ApplicationJob
   include StationsHelper
 
   def perform
-    create_stations if Station.count == 0;
+    create_stations if Station.count == 0
     if bixis_need_update?
       update_available_bikes
     else
