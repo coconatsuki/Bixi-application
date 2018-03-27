@@ -9,4 +9,5 @@ RSpec.describe StationsController, :vcr, type: :controller do
     end
   end
 
+
 end

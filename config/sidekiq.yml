@@ -1,0 +1,8 @@
+:schedule:
+  update_stations:
+    cron: '0 0 5 * * *'   # Runs once a day, at 5am
+    class: UpdateStationsJob
+
+  update_bixis:
+    cron: '0 * * * * *'   # Runs once per minute, when seconds are 0
+    class: UpdateBixisAvailabilityJob

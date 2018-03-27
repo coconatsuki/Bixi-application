@@ -28,6 +28,14 @@ gem 'jquery-rails'
 gem 'rest-client'
 # Check Ruby on Rails good practices and suggest improvements
 gem 'rubocop'
+# Job runner sidekiq, tu update bixis stations at regular intervals
+gem 'sidekiq'
+# Extension to Sidekiq that pushes jobs in a scheduled way
+gem 'sidekiq-scheduler'
+# allows to perform atomic operations on individual data structures
+gem 'redis-objects'
+# Abort requests that are taking too long
+gem 'rack-timeout'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -56,6 +64,11 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'faker'
+end
+
+group :test do
+  gem 'simplecov'
+  gem 'shoulda-matchers'
 end
 
 group :development do
