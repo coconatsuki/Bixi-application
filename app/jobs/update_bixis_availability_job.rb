@@ -1,13 +1,11 @@
 class UpdateBixisAvailabilityJob < ApplicationJob
   queue_as :default
-  include StationsHelper
+
+  rescue_from Interactor::Failure do
+    Rails.logger.info("Bixis already up to date")
+  end
 
   def perform
-    create_stations if Station.count == 0
-    if bixis_need_update?
-      update_available_bikes
-    else
-      Rails.logger.info("Stations already up to date")
+    UpdateBixisInfos
     end
-  end
 end

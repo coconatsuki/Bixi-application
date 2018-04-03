@@ -26,8 +26,6 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 # simple HTTP and REST client for Ruby,
 gem 'rest-client'
-# Check Ruby on Rails good practices and suggest improvements
-gem 'rubocop'
 # Job runner sidekiq, tu update bixis stations at regular intervals
 gem 'sidekiq'
 # Extension to Sidekiq that pushes jobs in a scheduled way
@@ -36,6 +34,8 @@ gem 'sidekiq-scheduler'
 gem 'redis-objects'
 # Abort requests that are taking too long
 gem 'rack-timeout'
+# used to encapsulate an application's business logic.
+gem "interactor", "~> 3.0"
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -81,6 +81,8 @@ group :development do
   # For debugging
   gem 'better_errors'
   gem 'binding_of_caller'
+  # Check Ruby on Rails good practices and suggest improvements
+  gem 'rubocop'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

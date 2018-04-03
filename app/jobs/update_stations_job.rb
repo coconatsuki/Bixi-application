@@ -1,12 +1,11 @@
 class UpdateStationsJob < ApplicationJob
   queue_as :default
-  include StationsHelper
+
+  rescue_from Interactor::Failure do
+    Rails.logger.info("Stations already up to date")
+  end
 
   def perform
-    if stations_need_create_or_update?
-      create_stations
-    else
-      Rails.logger.info("Stations already up to date")
-    end
+    UpdateStationsList.call
   end
 end

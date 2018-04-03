@@ -29,5 +29,5 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  main_page_header: Stations with available bixis near the office
+fr:
+  main_page_header: Stations proches du bureau ayant des bixis disponibles 
