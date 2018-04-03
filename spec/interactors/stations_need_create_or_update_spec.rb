@@ -1,12 +1,11 @@
 describe StationsNeedCreateOrUpdate do
+  after(:each) do
+    StationsRequestDate.delete
+  end
 
-after(:each) do
-  StationsRequestDate.delete
-end
-
-subject do
-  StationsNeedCreateOrUpdate.call
-end
+  subject do
+    StationsNeedCreateOrUpdate.call
+  end
 
   it 'returns true if no api request has been made yet' do
     expect(subject.success?).to be_truthy

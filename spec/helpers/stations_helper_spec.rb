@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe StationsHelper, vcr: { :record => :new_episodes }, type: :helper do
+RSpec.describe StationsHelper, vcr: { record: :new_episodes }, type: :helper do
   after(:each) do
     StationsRequestDate.delete
     BixisRequestDate.delete
@@ -26,7 +26,7 @@ RSpec.describe StationsHelper, vcr: { :record => :new_episodes }, type: :helper 
     end
     it 'destroys useless stations in the database' do
       useless_database_station = create(:station, bixi_id: "abcd")
-      fake_api_station = [{ "name" => "unknown-station", "bixi_id" => 2}]
+      fake_api_station = [{ "name" => "unknown-station", "bixi_id" => 2 }]
       expect(Station.count).to eq(1)
       subject
       expect( Station.find_by("bixi_id" => "abcd")).to be_nil

@@ -1,4 +1,4 @@
-describe BixisService, vcr: { :record => :new_episodes } do
+describe BixisService, vcr: { record: :new_episodes } do
   describe '#request_stations' do
     it 'returns an array of hashes' do
       expect(BixisService.request_stations).to be_kind_of(Array)

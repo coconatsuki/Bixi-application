@@ -16,5 +16,4 @@ class StationsController < ApplicationController
     @stations_with_bixis = Station.where("available_bixis > 0").order(:distance_from_office).limit(5)
     @closest_stations = Station.order(:distance_from_office).limit(5) if @stations_with_bixis.empty?
   end
-
 end

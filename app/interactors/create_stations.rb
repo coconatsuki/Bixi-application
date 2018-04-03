@@ -18,5 +18,4 @@ class CreateStations
     StationsRequestDate.value = Time.now
     context.stations_array = stations_array
   end
-
 end
