@@ -2,7 +2,17 @@
 
 This is the Heroku link :
 https://bixi-fx-innovation.herokuapp.com/
+------------
+HOW TO RUN THE APP LOCALLY
 
+- To launch the app and sidekiq: $heroku local (or $rails server, then $sidekiq -q default -c 5).
+
+- redis & postresql must be started.
+
+- To run the tests: $rspec.
+------------
+NEXT STEP/WORKING ON : give the possibility to use the app from anywhere in Montreal
+------------
 This application was made for a technical test. Here are the instructions :
 
 - Make an app that checks the availability of bixis (bikes for share) at the closest stations (from the Office which sent me the test).
