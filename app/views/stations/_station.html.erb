@@ -1,3 +1,3 @@
-  <td><%= station.address || "Couldn't find adress (#{station.latitude}, #{station.longitude})"%></td>
-  <td><%= station.distance_from_office.round(2) %> km</td>
+  <td><%= station.address || t('no_address', lat: station.latitude, long: station.longitude) %></td>
+  <td><%= station.distance_from_office.round(2) %> <%= t(:km) %></td>
   <td><%= station.available_bixis %></td>

@@ -2,7 +2,6 @@ describe BixisNeedUpdate do
   after(:each) do
     BixisRequestDate.delete
   end
-
   subject do
     BixisNeedUpdate.call
   end

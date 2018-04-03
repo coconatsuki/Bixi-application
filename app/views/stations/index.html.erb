@@ -6,7 +6,7 @@
     <div class="col-md-4 offset-md-4 d-flex justify-content-center">
 
       <%= form_tag("/stations", method: "post", remote: true) do %>
-        <%= submit_tag("Refresh stations", class: "btn btn-primary btn-lg m-4") %>
+        <%= submit_tag(t(:refresh_station), class: "btn btn-primary btn-lg m-4") %>
       <% end %>
 
     </div>

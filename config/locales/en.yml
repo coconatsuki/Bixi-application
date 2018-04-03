@@ -31,3 +31,10 @@
 
 en:
   main_page_header: Stations with available bixis near the office
+  km: km
+  address_header: address
+  distance_header: Distance from office
+  bixis_num_header: Number of available bixis
+  no_address: "Couldn't find adress (lat: %{lat}", long: %{long})
+  no_bixi_available: Sorry, there's no available bixis nearby. Here is a list of the closest stations:
+  refresh_station: Refresh stations
